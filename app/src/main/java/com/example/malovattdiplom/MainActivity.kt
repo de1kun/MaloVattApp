@@ -22,10 +22,11 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContentView(R.layout.activity_main)
+
         val start_btn = findViewById<AppCompatButton>(R.id.start_btn)
         start_btn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
+            startActivity(intent)}
 
         val economy_btn = findViewById<AppCompatButton>(R.id.economy_btn)
         economy_btn.setOnClickListener{
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity(){
         lifehack_btn.setOnClickListener{
             val intent2 = Intent(this, LifeHacks::class.java)
             startActivity(intent2)
-        }
         }
     }
 }
