@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity(){
         start_btn.setOnClickListener{
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
+
+        val economy_btn = findViewById<AppCompatButton>(R.id.economy_btn)
+        economy_btn.setOnClickListener{
+            val intent = Intent(this, EcoMenu::class.java)
+            startActivity(intent)
+        }
         }
     }
 }
