@@ -13,19 +13,20 @@
 
         <ImageView
             android:id="@+id/icons"
-            android:layout_width="130dp"
-            android:layout_height="119dp"
+            android:layout_width="176dp"
+            android:layout_height="169dp"
             tools:srcCompat="@drawable/lamp" />
 
         <TextView
             android:id="@+id/name_text_view"
-            android:layout_width="85dp"
+            android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/icons"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="11dp"
             android:gravity="center"
             android:text="Эко лампы"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

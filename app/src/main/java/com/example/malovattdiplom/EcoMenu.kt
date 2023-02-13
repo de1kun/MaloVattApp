@@ -27,7 +27,11 @@ class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
     private fun setDataList():ArrayList<LanguageItem>{
         var arrayList:ArrayList<LanguageItem> = ArrayList()
 
-        arrayList.add(LanguageItem(R.drawable.lamp, "Лампы эко"))
+        arrayList.add(LanguageItem(R.drawable.lamp, "Эко лампы"))
+        arrayList.add(LanguageItem(R.drawable.wind,"Ветрогенераторы"))
+        arrayList.add(LanguageItem(R.drawable.sun_gen,"Солнечные панели"))
+        arrayList.add(LanguageItem(R.drawable.generator,"Генераторы"))
+
 
         return arrayList
     }
