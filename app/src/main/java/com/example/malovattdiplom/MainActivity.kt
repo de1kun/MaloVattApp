@@ -29,8 +29,14 @@ class MainActivity : AppCompatActivity(){
 
         val economy_btn = findViewById<AppCompatButton>(R.id.economy_btn)
         economy_btn.setOnClickListener{
-            val intent = Intent(this, EcoMenu::class.java)
-            startActivity(intent)
+            val intent1 = Intent(this, EcoMenu::class.java)
+            startActivity(intent1)
+        }
+
+        val lifehack_btn = findViewById<AppCompatButton>(R.id.lifehack_btn)
+        lifehack_btn.setOnClickListener{
+            val intent2 = Intent(this, LifeHacks::class.java)
+            startActivity(intent2)
         }
         }
     }

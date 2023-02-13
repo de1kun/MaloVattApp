@@ -6,12 +6,14 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
+import com.example.malovattdiplom.gridadapter.LanguageAdapter
+import com.example.malovattdiplom.gridadapter.LanguageItem
 
 class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private var gridView:GridView? = null
     private var arrayList:ArrayList<LanguageItem>? = null
-    private var languageAdapter:LanguageAdapter? = null
+    private var languageAdapter: LanguageAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eco_menu)

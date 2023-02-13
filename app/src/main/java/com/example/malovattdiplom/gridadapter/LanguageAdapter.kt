@@ -1,4 +1,4 @@
-package com.example.malovattdiplom
+package com.example.malovattdiplom.gridadapter
 
 import android.content.Context
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.malovattdiplom.R
 
 class LanguageAdapter(var context: Context, var arrayList:ArrayList<LanguageItem>): BaseAdapter() {
     override fun getCount(): Int {
@@ -24,7 +25,7 @@ class LanguageAdapter(var context: Context, var arrayList:ArrayList<LanguageItem
         var view:View = View.inflate(context, R.layout.grid_item_list, null)
         var icons:ImageView = view.findViewById(R.id.icons)
         var names: TextView = view.findViewById(R.id.name_text_view)
-        var languageItem:LanguageItem = arrayList.get(p0)
+        var languageItem: LanguageItem = arrayList.get(p0)
         icons.setImageResource(languageItem.icons!!)
         names.text = languageItem.name
         return view

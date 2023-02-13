@@ -1,4 +1,4 @@
-package com.example.malovattdiplom
+package com.example.malovattdiplom.gridadapter
 
 class LanguageItem {
 
