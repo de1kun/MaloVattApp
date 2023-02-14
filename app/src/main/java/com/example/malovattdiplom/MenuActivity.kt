@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -24,7 +25,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.malovattdiplom.data.Item
 import com.example.malovattdiplom.data.ItemViewModel
-import com.google.android.material.internal.ManufacturerUtils
 
 
 class MenuActivity : AppCompatActivity(), RowInterface, PriceRefund {
@@ -54,6 +54,7 @@ class MenuActivity : AppCompatActivity(), RowInterface, PriceRefund {
         val priceMenu = findViewById<TextView>(R.id.textView9)
         val vattMenu = findViewById<TextView>(R.id.textView8)
         mItemViewModel = ViewModelProvider(this)[ItemViewModel::class.java]
+        pref = applicationContext.getSharedPreferences("MyPref", 0) // 0 - for private mode
 
         val adapter = ListAdapter(this, this)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -63,36 +64,43 @@ class MenuActivity : AppCompatActivity(), RowInterface, PriceRefund {
         mItemViewModel.readAllData.observe(this, Observer{item ->
             adapter.setData(item)
             for (i in item.indices){
-                mainCount += item[i].price
-                vattCount += item[i].vatt_count
+                mainCount += item[i].vatt_count
+                vattCount += (item[i].vatt_count * pref.getInt("key_price", -1))
             }
             priceMenu.text = "Общие затраты :$mainCount"
             vattMenu.text = "Ватт используется :$vattCount"
         })
 
-
+    Log.d("sp",pref.getInt("key_price", -1).toString())
         button.setOnClickListener{
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.add_dialoge_item, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-            item_name = mDialogView.findViewById(R.id.item_name)
-            vatt_count = mDialogView.findViewById(R.id.vatt_count)
-            mAlertDialog = mBuilder.show()
-            mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            add_item_btn= mDialogView.findViewById<AppCompatButton>(R.id.add_item_btn)
-            add_item_btn.setOnClickListener{
-                insertDataToDatabase()
-                vattCount = 0
-                mAlertDialog.dismiss()
+            if (!pref.getInt("key_price", -1).toString().contains("-1")&&!pref.getInt("key_price", -1).toString().contains("0")){
+                val mDialogView = LayoutInflater.from(this).inflate(R.layout.add_dialoge_item, null)
+                val mBuilder = AlertDialog.Builder(this)
+                    .setView(mDialogView)
+                item_name = mDialogView.findViewById(R.id.item_name)
+                vatt_count = mDialogView.findViewById(R.id.vatt_count)
+                mAlertDialog = mBuilder.show()
+                mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                add_item_btn= mDialogView.findViewById<AppCompatButton>(R.id.add_item_btn)
+                add_item_btn.setOnClickListener{
+                    insertDataToDatabase()
+                    vattCount = 0
+                    mAlertDialog.dismiss()
+                }
+                close_window_btn=mDialogView.findViewById<AppCompatButton>(R.id.close_window_btn)
+                close_window_btn.setOnClickListener{
+                    mAlertDialog.dismiss()
+                }
             }
-            close_window_btn=mDialogView.findViewById<AppCompatButton>(R.id.close_window_btn)
-            close_window_btn.setOnClickListener{
-                mAlertDialog.dismiss()
+            else{
+                val alert = AlertDialog.Builder(this).setTitle("Ошибка").setMessage("Добавьте данные в настройки")
+                    .setPositiveButton("ok", null)
+                alert.show()
             }
+
         }
 
         //настройки
-        pref = applicationContext.getSharedPreferences("MyPref", 0) // 0 - for private mode
         val editor: SharedPreferences.Editor = pref.edit()
         val set_button = findViewById<Button>(R.id.set_button)
         set_button.setOnClickListener{
@@ -117,7 +125,7 @@ class MenuActivity : AppCompatActivity(), RowInterface, PriceRefund {
     private fun insertDataToDatabase() {
         val firstItem = item_name.text.toString()
         val secondVatt = vatt_count.text
-        val thirdPrice = price.text
+        val thirdPrice = pref.getInt("key_price", -1)
 
         if(inputCheck(firstItem, secondVatt, thirdPrice)){
             //Create Item object
@@ -131,8 +139,8 @@ class MenuActivity : AppCompatActivity(), RowInterface, PriceRefund {
             Toast.makeText(this, "Пожалуйста заполните все поля.", Toast.LENGTH_LONG).show()
        }
     }
-    private fun inputCheck(firstItem: String, secondVatt: Editable, thirdPrice: Editable): Boolean {
-        return !(TextUtils.isEmpty(firstItem) && secondVatt.isEmpty() && thirdPrice.isEmpty())
+    private fun inputCheck(firstItem: String, secondVatt: Editable, thirdPrice: Int): Boolean {
+        return !(TextUtils.isEmpty(firstItem) && secondVatt.isEmpty() && thirdPrice.toString().isEmpty())
     }
 
 
@@ -166,6 +174,7 @@ class MenuActivity : AppCompatActivity(), RowInterface, PriceRefund {
             }
         }
     }
+    @SuppressLint("SuspiciousIndentation")
     private fun updateItem (a:String, b:String, c:String, d:String ){
         if (b.isNotEmpty() && c.isNotEmpty() && d.isNotEmpty()){
             vattCount = 0
