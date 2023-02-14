@@ -53,13 +53,13 @@
         android:id="@+id/item_price_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="148dp"
         android:fontFamily="@font/montserrat_alternates_light"
         android:text="Price"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/item_vatt_count"
+        app:layout_constraintStart_toEndOf="@+id/item_name_txt"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
