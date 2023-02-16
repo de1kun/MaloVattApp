@@ -1,15 +1,22 @@
 package com.example.malovattdiplom
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.malovattdiplom.gridadapter.LanguageAdapter
 import com.example.malovattdiplom.gridadapter.LanguageItem
+import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
 
 class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
+
+    private var titlesList = mutableListOf <String>()
+    private var desclist = mutableListOf <String>()
+    private var imagesList = mutableListOf<Int>()
 
     private var gridView:GridView? = null
     private var arrayList:ArrayList<LanguageItem>? = null
@@ -37,9 +44,16 @@ class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
 
         return arrayList
     }
-
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        var languageItem: LanguageItem = arrayList!!.get(p2)
-        Toast.makeText(applicationContext, languageItem.name, Toast.LENGTH_LONG).show()
+        var languageItem: LanguageItem = arrayList!![p2]
+        //Toast.makeText(applicationContext, languageItem.name, Toast.LENGTH_LONG).show()
+        when (languageItem.name) {
+            "Эко лампы" -> { val intent = Intent(this, RvItemsActivty::class.java)
+                startActivity(intent)}
+            "Ветрогенераторы" -> {}
+            "Солнечные панели"-> {}
+            "Генераторы"-> {}
+        }
     }
+
 }
