@@ -1,9 +1,11 @@
-package com.example.malovattdiplom
+package com.example.malovattdiplom.lampsItem
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.malovattdiplom.R
+import com.example.malovattdiplom.RecyclerViewAdapter
 
 class RvItemsActivty : AppCompatActivity() {
 
@@ -15,7 +17,7 @@ class RvItemsActivty : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rv_items_activty)
 
-        val rv_recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.lamp_view)
+        val rv_recyclerView: RecyclerView = findViewById(R.id.lamp_view)
 
         postToList()
 
@@ -30,12 +32,9 @@ class RvItemsActivty : AppCompatActivity() {
     }
     private fun postToList() {
 
-        addToList("Лампа 1", "123", R.drawable.ic_launcher_foreground)
-        addToList("Лампа 1", "123", R.drawable.ic_launcher_foreground)
-        addToList("Лампа 1", "123", R.drawable.ic_launcher_foreground)
-        addToList("Лампа 1", "123", R.drawable.ic_launcher_foreground)
-
-
+        addToList("Светодиодная", "5-10 Вт", R.drawable.eco_lamp)
+        addToList("Люминесцентная", "10-15 Вт", R.drawable.lamp2)
+        addToList("Накаливания", "до 40 Вт", R.drawable.lamp3)
     }
 
 }

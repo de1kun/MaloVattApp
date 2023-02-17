@@ -1,16 +1,14 @@
 package com.example.malovattdiplom
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.malovattdiplom.gridadapter.LanguageAdapter
 import com.example.malovattdiplom.gridadapter.LanguageItem
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
+import com.example.malovattdiplom.lampsItem.RvItemsActivty
 
 class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -46,11 +44,12 @@ class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         var languageItem: LanguageItem = arrayList!![p2]
-        //Toast.makeText(applicationContext, languageItem.name, Toast.LENGTH_LONG).show()
+
         when (languageItem.name) {
             "Эко лампы" -> { val intent = Intent(this, RvItemsActivty::class.java)
                 startActivity(intent)}
-            "Ветрогенераторы" -> {}
+            "Ветрогенераторы" -> {val intent = Intent(this, RvWindGenActivity::class.java)
+                startActivity(intent)}
             "Солнечные панели"-> {}
             "Генераторы"-> {}
         }

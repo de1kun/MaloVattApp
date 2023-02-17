@@ -13,7 +13,10 @@
         android:theme="@style/Theme.MaloVattDiplom"
         tools:targetApi="31">
         <activity
-            android:name=".RvItemsActivty"
+            android:name=".RvWindGenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".lampsItem.RvItemsActivty"
             android:exported="false" />
         <activity
             android:name=".RVItemsActivity"
