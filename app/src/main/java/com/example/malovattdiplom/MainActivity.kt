@@ -1,5 +1,6 @@
 package com.example.malovattdiplom
 
+import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
@@ -9,10 +10,12 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.DialogFragment
 
 
 class MainActivity : AppCompatActivity(){
@@ -38,6 +41,15 @@ class MainActivity : AppCompatActivity(){
         lifehack_btn.setOnClickListener{
             val intent2 = Intent(this, LifeHacks::class.java)
             startActivity(intent2)
+        }
+        val author = findViewById<AppCompatButton>(R.id.author)
+        author.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("О программе")
+            builder.setMessage("Разработчик : Старостин Алексей")
+            builder.setPositiveButton("Закрыть") { dialog, which ->
+            }
+            builder.show()
         }
     }
 }

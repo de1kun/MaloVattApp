@@ -9,6 +9,9 @@ import com.example.malovattdiplom.gridadapter.LanguageAdapter
 import com.example.malovattdiplom.gridadapter.LanguageItem
 import android.content.Intent
 import com.example.malovattdiplom.lampsItem.RvItemsActivty
+import com.example.malovattdiplom.rv.RvGenActivity
+import com.example.malovattdiplom.rv.RvSunGenActivity
+import com.example.malovattdiplom.rv.RvWindGenActivity
 
 class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -50,8 +53,10 @@ class EcoMenu : AppCompatActivity(), AdapterView.OnItemClickListener {
                 startActivity(intent)}
             "Ветрогенераторы" -> {val intent = Intent(this, RvWindGenActivity::class.java)
                 startActivity(intent)}
-            "Солнечные панели"-> {}
-            "Генераторы"-> {}
+            "Солнечные панели"-> {val intent = Intent(this, RvSunGenActivity::class.java)
+                startActivity(intent)}
+            "Генераторы" -> { val intent = Intent(this, RvGenActivity::class.java)
+                startActivity(intent)}
         }
     }
 
